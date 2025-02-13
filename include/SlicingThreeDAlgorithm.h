@@ -9,7 +9,8 @@
 #define LAR_SLICING_THREE_D_ALGORITHM_H 1
 
 #include "Pandora/Algorithm.h"
-#include "Pandora/AlgorithmTool.h"
+//#include "Pandora/AlgorithmTool.h"
+#include "EventSlicingThreeDBaseTool.h"
 #include "larpandoracontent/LArControlFlow/SlicingAlgorithm.h"
 
 namespace lar_content
@@ -36,7 +37,7 @@ private:
     pandora::StatusCode Run();
     pandora::StatusCode ReadSettings(const pandora::TiXmlHandle xmlHandle);
 
-    EventSlicingThreeDTool *m_pEventSlicingTool; ///< The address of the event slicing tool
+    EventSlicingThreeDBaseTool *m_pEventSlicingTool; ///< The address of the event slicing tool
     std::string m_slicingListDeletionAlgorithm;  ///< The name of the slicing list deletion algorithm
 
     HitTypeToNameMap m_caloHitListNames; ///< The hit type to calo hit list name map

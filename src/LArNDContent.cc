@@ -15,7 +15,9 @@
 #include "CandidateVertexCreationThreeDAlgorithm.h"
 #include "CreateTwoDClustersFromThreeDAlgorithm.h"
 #include "CutClusterCharacterisationThreeDAlgorithm.h"
+#include "EventSlicingThreeDBaseTool.h"
 #include "EventSlicingThreeDTool.h"
+#include "CheatingEventSlicingThreeDTool.h"
 #include "HierarchyAnalysisAlgorithm.h"
 #include "LArNDContent.h"
 #include "MasterThreeDAlgorithm.h"
@@ -42,6 +44,7 @@
 
 #define LAR_ND_ALGORITHM_TOOL_LIST(d)                                                                                              \
     d("LArEventSlicingThreeD",                  EventSlicingThreeDTool)                                                            \
+    d("LArCheatingEventSlicingThreeD",          CheatingEventSlicingThreeDTool)                                                    
 
 #define FACTORY Factory
 
