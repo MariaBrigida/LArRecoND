@@ -414,10 +414,6 @@ def main(argv=None):
                     [particleIDLocal.push_back(int(i)) for i in contr_info["particleIDLocal"]]
                     [interactionIndex.push_back(int(i)) for i in contr_info["vertexID"]]
                     [pdgHit.push_back(int(i)) for i in contr_info["pdg"]]
-                    print("packetFrac = ",packetFrac.back())
-                    print("trackID = ",trackID.back())
-                    print("particleID = ",particleID.back())
-                    print("interactionIndex = ",interactionIndex.back())
                 # save hit information
                 z.push_back(hits_z[hitID]+trueZOffset)
                 y.push_back(hits_y[hitID]+trueYOffset)
