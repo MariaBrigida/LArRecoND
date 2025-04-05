@@ -1,0 +1,5 @@
+NoDLVtx mc BruceSamples/MCHierarchy_NoDLVtx/MCHierarchy_MicroProdN3p4_NDLAr_2E18_FHC.flow.singles.nu.0000734.FLOW.hdf5_hits.root
+NoDLVtx evt BruceSamples/EventHierarchy_NoDLVtx/EventHierarchy_MicroProdN3p4_NDLAr_2E18_FHC.flow.singles.nu.0000734.FLOW.hdf5_hits.root
+WithDLVtx mc BruceSamples/MCHierarchy_WithDLVtx/MCHierarchy_MicroProdN3p4_NDLAr_2E18_FHC.flow.singles.nu.0000734.FLOW.hdf5_hits.root
+WithDLVtx evt BruceSamples/EventHierarchy_WithDLVtx/EventHierarchy_MicroProdN3p4_NDLAr_2E18_FHC.flow.singles.nu.0000734.FLOW.hdf5_hits.root
+
