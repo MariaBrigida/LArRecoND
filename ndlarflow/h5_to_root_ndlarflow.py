@@ -22,6 +22,7 @@ def printUsage():
     print('FileList    [REQUIRED]:                                         comma separated set of files to convert - note it will be one output')
     print('IsData      [OPTIONAL, DEFAULT = 0, is MC]:                     1 = Data, otherwise = MC')
     print('IsFinalHits [OPTIONAL, DEFAULT = 0, prompt hits]:               1 = use "final" hits, otherwise = "prompt"')
+    print('LegacyMode  [OPTIONAL, DEFAULT = 0, no legacy]:                 0 = no legacy mode for samples < MiniRun6, otherwise = legacy')
     print('OutName     [OPTIONAL, DEFAULT = input[0]+"_hits_uproot.root"]: string for an output file name if you want to override. Note that default writes to current directory.')
     print('')
     print('NOTE: The output of this file should then be processed with the rootToRootConversion macro to get the format expected by LArRecoND.')
@@ -31,6 +32,7 @@ def main(argv=None):
     fileNames=[]
     useData=False
     useFinalHits=False
+    legacyMode=False
     overrideOutname=1
     outname=''
 
@@ -61,8 +63,11 @@ def main(argv=None):
         if len(sys.argv)>3 and sys.argv[3]!=None:
             if int(sys.argv[3])==1:
                 useFinalHits=True
-        if len(sys.argv)>4 and sys.argv[4]!=None:
-            outname=str(sys.argv[4])
+        if len(sys.argv)>4 and sys.argv[3]!=None:
+            if int(sys.argv[4])==1:
+                legacyMode=True
+        if len(sys.argv)>5 and sys.argv[4]!=None:
+            outname=str(sys.argv[5])
             overrideOutname=0
 
     MaxArrayDepth=int(10000)
@@ -228,9 +233,14 @@ def main(argv=None):
                 vertex_indicesArray = np.where(flow_out["/mc_truth/interactions/data"]["event_id"] == spillID)[0]
                 vtx = flow_out["/mc_truth/interactions/data"][vertex_indicesArray]
                 nu_vtx_id = (vtx['vertex_id']).astype('int64')
-                nu_vtx_x = (vtx['x_vert']).astype('float32')
-                nu_vtx_y = (vtx['y_vert']).astype('float32')
-                nu_vtx_z = (vtx['z_vert']).astype('float32')
+                if legacyMode==False:
+                    nu_vtx_x = (vtx['x_vert']).astype('float32')
+                    nu_vtx_y = (vtx['y_vert']).astype('float32')
+                    nu_vtx_z = (vtx['z_vert']).astype('float32')
+                else:
+                    nu_vtx_x = (vtx["vertex"][:,0]).astype('float32')
+                    nu_vtx_y = (vtx["vertex"][:,1]).astype('float32')
+                    nu_vtx_z = (vtx["vertex"][:,2]).astype('float32')
                 nu_vtx_E = (vtx['Enu']*MeV2GeV).astype('float32')
                 nu_pdg = (vtx['nu_pdg']).astype('int32')
                 nu_px = (vtx['nu_4mom'][:,0]*MeV2GeV).astype('float32')
